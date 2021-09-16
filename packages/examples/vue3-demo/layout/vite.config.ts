@@ -17,6 +17,13 @@ export default defineConfig({
       shared: ["vue"]
     })
   ],
+  optimizeDeps:{
+    exclude:['home/Content',
+      'home/Button',
+      'common-lib/CommonCounter',
+      'common-lib/CommonHeader',
+      'css-modules/Button',]
+  },
   build: {
     target:'es2020',
     minify: false,
