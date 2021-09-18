@@ -49,12 +49,12 @@ jobs:
         run: yarn build
       # - name: Setup tmate session
       #       uses: mxschmitt/action-tmate@v3
-      - uses: shaowenchen/debugger-action@v2
-        name: debugger
-        timeout-minutes: 30
-        continue-on-error: true
-        with:
-          ngrok_token: ${{ secrets.NGROK_AUTH_TOKEN }}
+      # - uses: shaowenchen/debugger-action@v2
+      #   name: debugger
+      #   timeout-minutes: 30
+      #   continue-on-error: true
+      #   with:
+      #     ngrok_token: ${{ secrets.NGROK_AUTH_TOKEN }}
       - name: Test
         run: yarn test
       # - name: Ngrok debugging on failure
