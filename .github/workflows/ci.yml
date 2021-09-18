@@ -47,17 +47,25 @@ jobs:
 
       - name: Build
         run: yarn build
-      # - name: Test
-      #   run: yarn test
-      - name: Ngrok debugging on failure
-        # if: failure() && env.CHEVAH_DEBUG == 'yes'
-        env:
-          NGROK_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-        run: |
-          choco install --yes --no-progress ngrok
-          ngrok.exe authtoken $env:NGROK_TOKEN
-          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
-          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-          Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "$env:NGROK_TOKEN" -Force)
-          ngrok.exe tcp 3389
+      # - name: Setup tmate session
+      #       uses: mxschmitt/action-tmate@v3
+      - uses: shaowenchen/debugger-action@v2
+        name: debugger
+        timeout-minutes: 30
+        continue-on-error: true
+        with:
+          ngrok_token: ${{ secrets.NGROK_AUTH_TOKEN }}
+      - name: Test
+        run: yarn test
+      # - name: Ngrok debugging on failure
+      #   if: failure()
+      #   env:
+      #     NGROK_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+      #   run: |
+      #     choco install --yes --no-progress ngrok
+      #     ngrok.exe authtoken $env:NGROK_TOKEN
+      #     Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+      #     Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+      #     Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+      #     Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "$env:NGROK_TOKEN" -Force)
+      #     ngrok.exe tcp 3389
