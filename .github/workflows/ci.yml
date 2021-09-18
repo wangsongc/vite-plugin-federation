@@ -56,6 +56,8 @@ jobs:
       #   with:
       #     ngrok_token: ${{ secrets.NGROK_AUTH_TOKEN }}
       - name: Test
+        continue-on-error: true
+        timeout-minutes: 5
         run: yarn test
       # - name: Ngrok debugging on failure
       #   if: failure()
