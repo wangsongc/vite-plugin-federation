@@ -11,4 +11,3 @@ test('remote button', async () => {
     await page.textContent('.remote-btn')
   ).toBe('Button from remote')
 })
-
