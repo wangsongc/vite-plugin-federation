@@ -59,7 +59,12 @@ beforeAll(async () => {
         }
       })
 
-      execa('yarn', ['serve'], { cwd: rootDir, stdio: 'inherit' })
+      // execa('yarn', ['serve'], { cwd: rootDir, stdio: 'inherit' })
+      try {
+        execa('yarn', ['serve'], { cwd: rootDir, stdio: 'inherit' })
+      } catch (error) {
+        console.log('***fail****', error)
+      }
       await execa('yarn', ['build'], { cwd: rootDir, stdio: 'inherit' })
 
       const port = 5000
