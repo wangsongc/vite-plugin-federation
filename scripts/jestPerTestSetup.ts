@@ -77,7 +77,6 @@ beforeAll(async () => {
     // when building the playground should skip further tests.
     // If the page remains open, a command like `await page.click(...)` produces
     // a timeout with an exception that hides the real error in the console.
-    await execa('yarn', ['stop'], { cwd: rootDir, stdio: 'inherit' })
   }
 }, 50000)
 

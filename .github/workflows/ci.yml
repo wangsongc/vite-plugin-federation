@@ -56,4 +56,3 @@ jobs:
 
       - name: Test
         run: yarn test
-        shell: cmd
