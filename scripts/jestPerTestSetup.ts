@@ -79,7 +79,7 @@ beforeAll(async () => {
     // a timeout with an exception that hides the real error in the console.
     await page.close()
   }
-}, 30000)
+}, 50000)
 
 afterAll(async () => {
   global.page?.off('console', onConsole)

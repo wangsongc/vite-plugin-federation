@@ -8,7 +8,7 @@ module.exports = {
   testMatch: ['<rootDir>/packages/examples/**/*spec.[jt]s?(x)'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   clearMocks: true,
-  testTimeout: 30000,
+  testTimeout: 50000,
   globalSetup: './scripts/jestGlobalSetup.js',
   globalTeardown: './scripts/jestGlobalTeardown.js',
   testEnvironment: './scripts/jestEnv.js',
