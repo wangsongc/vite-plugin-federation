@@ -2,6 +2,7 @@ import fs from 'fs-extra'
 import { resolve } from 'path'
 import execa from 'execa'
 import { Page } from 'playwright-chromium'
+import kill from 'kill-port'
 
 export function slash(p: string): string {
   return p.replace(/\\/g, '/')
@@ -28,6 +29,7 @@ const onConsole = (msg) => {
 }
 
 beforeAll(async () => {
+  // kill('5000,5001,5002,5003')
   const page = global.page
   if (!page) {
     return
@@ -84,7 +86,8 @@ afterAll(async () => {
   global.page?.off('console', onConsole)
   await global.page?.close()
   skipError = true
-  await execa('yarn', ['stop'], { cwd: rootDir, stdio: 'inherit' })
+  // await execa('yarn', ['stop'], { cwd: rootDir, stdio: 'inherit' })
+  kill('5000,5001,5002,5003')
 
   if (err) {
     throw err
