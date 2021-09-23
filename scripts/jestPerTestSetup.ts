@@ -27,7 +27,7 @@ const onConsole = (msg) => {
   logs.push(msg.text())
 }
 
-beforeAll(async () => {
+beforeEach(async () => {
   const page = global.page
   if (!page) {
     return
