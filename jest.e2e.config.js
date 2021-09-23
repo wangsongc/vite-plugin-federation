@@ -5,7 +5,7 @@
 
 module.exports = {
   preset: 'ts-jest',
-  testMatch: ['<rootDir>/packages/examples/react-in-vue/**/*spec.[jt]s?(x)'],
+  testMatch: ['<rootDir>/packages/examples/vue3-demo/**/*spec.[jt]s?(x)'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   clearMocks: true,
   testTimeout: 50000,
