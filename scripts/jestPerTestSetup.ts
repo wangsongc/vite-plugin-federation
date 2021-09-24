@@ -87,7 +87,7 @@ afterAll(async () => {
   await global.page?.close()
   skipError = true
   // await execa('yarn', ['stop'], { cwd: rootDir, stdio: 'inherit' })
-  kill('5000,5001,5002,5003')
+  await kill('5000,5001,5002,5003')
 
   if (err) {
     throw err
